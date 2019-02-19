@@ -9,14 +9,6 @@
 
 
         <!-- ***********************Top Toolbar***************** -->
-        <RelativeLayout
-            android:id="@+id/relLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <include layout="@layout/snippet_top_profilebar"/>
-
-        </RelativeLayout>
 
 
         <!-- ********************Middle Section*************************** -->
@@ -25,7 +17,6 @@
             android:id="@+id/relLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/relLayout1"
             android:background="@drawable/white_grey_border_bottom">
 
             <LinearLayout

@@ -1,6 +1,7 @@
 package com.example.chitchat.Profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -43,6 +44,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
         setupSettingsList();
         setupBottomNavigattionView();
         setupFragments();
+        getIncomingIntent();
 
         //setup the backArrow for navigating back to profile activity
         ImageView backArrow = findViewById(R.id.backArrow);
@@ -55,11 +57,19 @@ public class AccountSettingsActivity extends AppCompatActivity {
         });
     }
 
+    private void getIncomingIntent() {
+        Intent intent = getIntent();
+        if(intent.hasExtra(getString(R.string.calling_activity))){
+            Log.d(TAG, "getIncomingIntent: recieved incoming intent from" + getString(R.string.profile_activity));
+            setViewPager(pagerAdapter.getFragmentNumber(getString(R.string.edit_profile_fragment)));
+        }
+    }
+
     private void setupFragments(){
 
         pagerAdapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(new EditProfileFragments(),getString(R.string.edit_profile_fragment));//fragment 0
-        pagerAdapter.addFragment(new SignoutFragments(),getString(R.string.sign_out_fragment));//fragment 1
+        pagerAdapter.addFragment(new SignOutFragment(),getString(R.string.sign_out_fragment));//fragment 1
     }
 
     private void setViewPager(int fragmentNumber){

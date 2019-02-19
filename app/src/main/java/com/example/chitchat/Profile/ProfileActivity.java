@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -42,15 +43,27 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         Log.d(TAG, "onCreate: started");
 
-        initImageLoader();
+        init();
+
+        /*initImageLoader();
         setupBottomNavigattionView();
         setupToolBar();
         setupActivityWidgets();
         setProfileImage();
-        tempGridSetup();
+        tempGridSetup();*/
     }
 
-    private void tempGridSetup(){
+    private void init(){
+        Log.d(TAG, "init: inflating" + getString(R.string.profile_fragment));
+
+        ProfileFragment fragment = new ProfileFragment();
+        FragmentTransaction transaction = ProfileActivity.this.getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(getString(R.string.profile_fragment));
+        transaction.commit();
+    }
+
+    /*private void tempGridSetup(){
         ArrayList<String> imgURLs = new ArrayList<>();
         imgURLs.add("http://hdqwalls.com/wallpapers/iron-man-simple-1-image.jpg ");
         imgURLs.add("http://hdqwalls.com/wallpapers/captain-america-original-poster.jpg");
@@ -91,9 +104,9 @@ public class ProfileActivity extends AppCompatActivity {
       String imgURL = "wonderfulengineering.com/wp-content/uploads/2016/02/iron-man-wallpaper-29-610x343.jpg";
       UniversalImageLoader.setImage(imgURL, profilePhoto, null, "https://" );
     }
-    /**
+    *
      * Responsible for setting up profile toolbar
-     */
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void setupToolBar() {
         Toolbar toolbar = findViewById(R.id.profileToolBar);
@@ -116,9 +129,9 @@ public class ProfileActivity extends AppCompatActivity {
         ImageLoader.getInstance().init(universalImageLoader.getConfig());
     }
 
-    /**
+    *
      * bottom navigation view settup
-     */
+
     public void setupBottomNavigattionView(){
         Log.d(TAG, "setupBottomNavigattionView: setting up bottom anavigation view");
         BottomNavigationViewEx bottomNavigationViewEx = findViewById(R.id.bottomNavViewBar);
@@ -127,5 +140,5 @@ public class ProfileActivity extends AppCompatActivity {
         Menu menu = bottomNavigationViewEx.getMenu();
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
-    }
+    }*/
 }

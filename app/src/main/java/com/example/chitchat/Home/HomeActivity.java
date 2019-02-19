@@ -41,11 +41,11 @@ public class HomeActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(mContext);
 
         setupFirebaseAuth();
-
         initImageLoader();
         setupBottomNavigattionView();
         setupViewPager();
     }
+
     private void initImageLoader(){
 
         UniversalImageLoader universalImageLoader = new UniversalImageLoader(mContext);
